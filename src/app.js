@@ -3,7 +3,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // ← КРИТИЧНО! Render передаёт PORT через env
 
 const routes = require("./routes"); // это src/routes/index.js
 
@@ -20,7 +20,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   }
 }));
 
-app.listen(PORT, () => {
+// ← ВАЖНО! Слушаем на 0.0.0.0, чтобы Render мог подключиться
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
   console.log(`Swagger: http://localhost:${PORT}/api-docs`);
 });

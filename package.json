@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon /src/app.js",
+    "dev": "nodemon src/app.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
